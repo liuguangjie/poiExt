@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	用这个配置文件 生产 数据库表
+	和生成excle数据转成 insert 语句 和 表名字
+	
+		
+	
+	******************************
+	晚上回去完成的功能是 读取excle 文件
+	生成表和 insert语句
+		
+ -->
+<tables>
+	<table name="table" charset="UTF-8">
+		<!-- <column type="varchar" length="" name=""></column> -->
+		<column  name="name1"/>
+		<column  name="name2"/>
+		<column  name="name3"/>
+		<column  name="name4"/>
+		<column  name="name5"/>
+		<column  name="name6"/>
+		<column  name="name7"/>
+	</table>
+</tables>
