@@ -17,7 +17,7 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import com.chuangwl.xml.parsers.XmlModelParser;
+import com.chuangwl.xml.parsers.model.XmlModelParser;
 
 public class Excle2007Ext {
 	private XmlModelParser modelParser = null;

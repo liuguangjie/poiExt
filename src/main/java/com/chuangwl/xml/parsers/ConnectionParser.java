@@ -6,4 +6,12 @@ public class ConnectionParser {
 	public ConnectionParser() {
 		
 	}
+	
+	
+	public void generateConnectionMapping(){
+		
+	}
+	
+	
+	
 }

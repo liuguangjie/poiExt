@@ -5,7 +5,7 @@ import java.util.Map.Entry;
 
 import org.junit.Test;
 
-import com.chuangwl.xml.parsers.XmlModelParser;
+import com.chuangwl.xml.parsers.model.XmlModelParser;
 
 public class TestDocument {
 

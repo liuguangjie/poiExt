@@ -1,4 +1,4 @@
-package com.chuangwl.poiext.jdbc;
+package com.chuangwl.xml.parsers.model;
 
 import java.io.Serializable;
 

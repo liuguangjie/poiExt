@@ -1,4 +1,4 @@
-package com.chuangwl.xml.parsers;
+package com.chuangwl.xml.parsers.model;
 
 import java.io.File;
 import java.io.InputStream;
@@ -12,6 +12,7 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import com.chuangwl.xml.parsers.GenerateParser;
 import com.chuangwl.xml.parsers.utils.GenerateMapping;
 
 public class XmlModelParser {
