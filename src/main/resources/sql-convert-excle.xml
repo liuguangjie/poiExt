@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 用这个配置文件 生产 数据库表 和生成excle数据转成 insert 语句 和 表名字 ****************************** 
-	晚上回去完成的功能是 读取excle 文件 生成表和 insert语句 完成的功能是 用sql语句转换成excle文件 -->
+<!-- 用这个配置文件 生产 数据库表 和生成excle数据转成 insert 语句 和 表名字
+ ****************************** 
+	晚上回去完成的功能是 
+	读取excle 文件 生成表和 insert语句 
+	完成的功能是 
+	用sql语句转换成excle文件 -->
 <tables>
 	<!-- excle 转换 sql 语句 -->
 	<table name="table" charset="UTF-8">
@@ -13,14 +17,15 @@
 	<sql-convert-excle>
 		<connections>
 			<!-- type 的值是数据库类型 -->
-			<connection type="mysql" host="" port="">
+			<connection type="mysql" host="localhost" port="3306">
 				<database>mybatis</database>
 				<user>root</user>
 				<passwd>root</passwd>
 			</connection>
 		</connections>
-		<excle-path>D:/</excle-path>
+		<export-path>D:/</export-path>
 		<sql>
+			select * from items
 		</sql>
 	</sql-convert-excle>
 

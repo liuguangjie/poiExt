@@ -11,7 +11,9 @@ public class ConnectionMapping implements Serializable {
 	private String port;
 	private String user;
 	private String passwd;
-	private String databaseName;
+	private String database;
+	
+	private String sql;
 
 	public String getType() {
 		return type;
@@ -53,12 +55,30 @@ public class ConnectionMapping implements Serializable {
 		this.passwd = passwd;
 	}
 
-	public String getDatabaseName() {
-		return databaseName;
+
+	public String getSql() {
+		return sql;
 	}
 
-	public void setDatabaseName(String databaseName) {
-		this.databaseName = databaseName;
+	public void setSql(String sql) {
+		this.sql = sql;
+	}
+	
+
+	public String getDatabase() {
+		return database;
 	}
 
+	public void setDatabase(String database) {
+		this.database = database;
+	}
+
+	@Override
+	public String toString() {
+		return "ConnectionMapping [type=" + type + ", host=" + host + ", port=" + port + ", user=" + user + ", passwd="
+				+ passwd + ", database=" + database + ", sql=" + sql + "]";
+	}
+	
+	
+	
 }

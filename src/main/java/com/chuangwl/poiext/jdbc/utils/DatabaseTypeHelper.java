@@ -14,12 +14,18 @@ public class DatabaseTypeHelper {
 	
 	public String getDrverName(String type){
 		String value=getValue(type);
-		return value.split("&")[1];
+		if(value!=null&&value.split("&").length>=2){
+			return value.split("&")[1];
+		}
+		return "";
 	}
 	
 	public String getUrl(String type){
 		String value=getValue(type);
-		return value.split("&")[0];
+		if(value!=null&&value.split("&").length>=2){
+			return value.split("&")[0];
+		}
+		return "";
 	}
 	
 	public static void main(String[] args) {
