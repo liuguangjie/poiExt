@@ -246,31 +246,31 @@ public class TestExportExcel<T> {
 		// 测试图书
 		ExportExcel<Book> ex2 = new ExportExcel<Book>();
 		String[] headers2 = { "图书编号", "图书名称", "图书作者", "图书价格", "图书ISBN",
-				"图书出版社", "封面图片" };
+				"图书出版社" };
 		List<Book> dataset2 = new ArrayList<Book>();
 		try {
 			// BufferedInputStream bis = new BufferedInputStream(
 			// new FileInputStream("V://book.bmp"));
-			BufferedInputStream bis = new BufferedInputStream(
+			/*BufferedInputStream bis = new BufferedInputStream(
 					new FileInputStream("/home/book.bmp"));
 			byte[] buf = new byte[bis.available()];
 			while ((bis.read(buf)) != -1) {
 				//
-			}
+			}*/
 			dataset2.add(new Book(1, "jsp", "leno", 300.33f, "1234567",
-					"清华出版社", buf));
+					"清华出版社"));
 			dataset2.add(new Book(2, "java编程思想", "brucl", 300.33f, "1234567",
-					"阳光出版社", buf));
+					"阳光出版社"));
 			dataset2.add(new Book(3, "DOM艺术", "lenotang", 300.33f, "1234567",
-					"清华出版社", buf));
+					"清华出版社"));
 			dataset2.add(new Book(4, "c++经典", "leno", 400.33f, "1234567",
-					"清华出版社", buf));
+					"清华出版社"));
 			dataset2.add(new Book(5, "c#入门", "leno", 300.33f, "1234567",
-					"汤春秀出版社", buf));
-			// OutputStream out = new FileOutputStream("E://export2003_a.xls");
-			// OutputStream out2 = new FileOutputStream("E://export2003_b.xls");
-			OutputStream out = new FileOutputStream("/home/export2003_a.xls");
-			OutputStream out2 = new FileOutputStream("/home/export2003_b.xls");
+					"汤春秀出版社"));
+			 OutputStream out = new FileOutputStream("D://export2003_a.xls");
+			 OutputStream out2 = new FileOutputStream("D://export2003_b.xls");
+//			OutputStream out = new FileOutputStream("/home/export2003_a.xls");
+//			OutputStream out2 = new FileOutputStream("/home/export2003_b.xls");
 			ex.exportExcel(headers, dataset, out);
 			ex2.exportExcel(headers2, dataset2, out2);
 			out.close();

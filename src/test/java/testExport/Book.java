@@ -22,6 +22,15 @@ public class Book {
 		this.pubName = pubName;
 		this.preface = preface;
 	}
+	public Book(int bookId, String name, String author, float price,
+			String isbn, String pubName) {
+		this.bookId = bookId;
+		this.name = name;
+		this.author = author;
+		this.price = price;
+		this.isbn = isbn;
+		this.pubName = pubName;
+	}
 
 	public int getBookId() {
 		return bookId;

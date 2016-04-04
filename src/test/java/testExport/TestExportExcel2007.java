@@ -16,14 +16,14 @@ public class TestExportExcel2007 {
 			// 工作区
 			XSSFWorkbook wb = new XSSFWorkbook();
 			XSSFSheet sheet = wb.createSheet("test");
-			for (int i = 0; i < 1000; i++) {
+			for (int i = 0; i < 10; i++) {
 				// 创建第一个sheet
 				// 生成第一行
 				XSSFRow row = sheet.createRow(i);
 				// 给这一行的第一列赋值
-				row.createCell(0).setCellValue("column1");
+				row.createCell(0).setCellValue("搜索");
 				// 给这一行的第一列赋值
-				row.createCell(1).setCellValue("column2");
+				row.createCell(1).setCellValue("姐姐");
 				System.out.println(i);
 			}
 			// 写文件
