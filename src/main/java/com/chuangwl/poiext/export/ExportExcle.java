@@ -1,5 +1,10 @@
 package com.chuangwl.poiext.export;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.Iterator;
+import java.util.List;
+
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFClientAnchor;
@@ -13,20 +18,19 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
 
 public class ExportExcle {
-	
+
 	public ExportExcle() {
 	}
-	
-	
-	public void export(String[] headers){
-		//1.声明一个工作薄
-		HSSFWorkbook hssfWorkbook=new HSSFWorkbook();
-		//2.生成一个表格  // 在Excel工作簿中建一工作表，其名为test
-		String sheetname="test";
-		HSSFSheet hssfSheet=hssfWorkbook.createSheet(sheetname);
-		
+
+	public void export(List<Object[]> dataSet, OutputStream out) {
+		// 1.声明一个工作薄
+		HSSFWorkbook hssfWorkbook = new HSSFWorkbook();
+		// 2.生成一个表格 // 在Excel工作簿中建一工作表，其名为test
+		String sheetname = "test";
+		HSSFSheet hssfSheet = hssfWorkbook.createSheet(sheetname);
+
 		// 生成一个样式
-		HSSFCellStyle hssfCellStyle=hssfWorkbook.createCellStyle();
+		HSSFCellStyle hssfCellStyle = hssfWorkbook.createCellStyle();
 		// 设置这些样式
 		hssfCellStyle.setFillForegroundColor(HSSFColor.SKY_BLUE.index);
 		hssfCellStyle.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
@@ -60,28 +64,51 @@ public class ExportExcle {
 		// 声明一个画图的顶级管理器
 		HSSFPatriarch patriarch = hssfSheet.createDrawingPatriarch();
 		// 定义注释的大小和位置,详见文档
-		HSSFComment comment = patriarch.createComment(new HSSFClientAnchor(0,
-				0, 0, 0, (short) 4, 2, (short) 6, 5));
+		HSSFComment comment = patriarch.createComment(new HSSFClientAnchor(0, 0, 0, 0, (short) 4, 2, (short) 6, 5));
 		// 设置注释内容
 		comment.setString(new HSSFRichTextString("可以在POI中添加注释！"));
 		// 设置注释作者，当鼠标移动到单元格上是可以在状态栏中看到该内容.
 		comment.setAuthor("leno");
 		// 产生表格标题行
 		HSSFRow row = hssfSheet.createRow(0);
+		Iterator<Object[]> it = dataSet.iterator();
+		Object[] headers = it.next();
 		for (short i = 0; i < headers.length; i++) {
 			HSSFCell cell = row.createCell(i);
 			cell.setCellStyle(hssfCellStyle);
-			HSSFRichTextString text = new HSSFRichTextString(headers[i]);
+			HSSFRichTextString text = new HSSFRichTextString(headers[i].toString());
 			cell.setCellValue(text);
 		}
-		
+
 		// 遍历集合数据，产生数据行
-		
-		
-		
-		
-		
-		
+
+		int index = 0;
+		HSSFCell cell = null;
+		Object value;
+		while (it.hasNext()) {
+			index++;
+			row = hssfSheet.createRow(index);
+			headers = it.next();
+			for (int i = 0; i < headers.length; i++) {
+				cell = row.createCell(i);
+				cell.setCellStyle(style2);
+				value = headers[i];
+				if (null != value) {
+					HSSFRichTextString richString = new HSSFRichTextString(value.toString());
+					HSSFFont font3 = hssfWorkbook.createFont();
+					font3.setColor(HSSFColor.BLUE.index);
+					richString.applyFont(font3);
+					cell.setCellValue(richString);
+				} else {
+					cell.setCellValue("");
+				}
+			}
+
+		}
+		try {
+			hssfWorkbook.write(out);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
-	
 }

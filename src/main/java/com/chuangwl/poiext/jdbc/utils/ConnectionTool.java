@@ -1,15 +1,24 @@
 package com.chuangwl.poiext.jdbc.utils;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.chuangwl.poiext.export.ExportExcle;
 import com.chuangwl.xml.parsers.ConnectionParser;
 import com.chuangwl.xml.parsers.model.ConnectionMapping;
 
@@ -80,6 +89,38 @@ public class ConnectionTool {
 		
 	}
 	
+	public List<Object[]> excutionSql(){
+		Connection conn=null;
+		Statement statement=null;
+		ResultSet resultSet=null;
+		ResultSetMetaData metaData=null;
+		List<Object[]> dataSets=new ArrayList<Object[]>();
+		Object[] array=null;
+		try {
+			conn=getConnection();
+			statement=conn.createStatement();
+			resultSet=statement.executeQuery(connectionMapping.getSql());
+			metaData=resultSet.getMetaData();
+			int count=metaData.getColumnCount();
+			array=new Object[count];
+			for(int i=1;i<=count;i++){
+				array[i-1]=metaData.getColumnName(i);
+			}
+			dataSets.add(array);
+			while(resultSet.next()){
+				array=new Object[count];
+				for(int i=1;i<=count;i++){
+					array[i-1]=resultSet.getObject(i);
+				}
+				dataSets.add(array);
+			}
+			return dataSets;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	public File getFile() {
 		return file;
 	}
@@ -103,13 +144,15 @@ public class ConnectionTool {
 	}
 	
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
 		
 		InputStream inputStream=ConnectionTool.class.getClassLoader().getResourceAsStream("sql-convert-excle.xml");
 		System.out.println(inputStream);
 		ConnectionTool connectionTool=new ConnectionTool(inputStream);
-		System.out.println(connectionTool.getConnection());
-		
+		List<Object[]> dataSet=connectionTool.excutionSql();
+		ExportExcle exportExcle=new ExportExcle();
+		OutputStream out=new FileOutputStream(new File("D:xxxxx.xls"));
+		exportExcle.export(dataSet,out);
 		
 	}
 }
