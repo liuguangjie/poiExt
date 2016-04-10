@@ -143,16 +143,4 @@ public class ConnectionTool {
 		return connectionMapping;
 	}
 	
-	
-	public static void main(String[] args) throws FileNotFoundException {
-		
-		InputStream inputStream=ConnectionTool.class.getClassLoader().getResourceAsStream("sql-convert-excle.xml");
-		System.out.println(inputStream);
-		ConnectionTool connectionTool=new ConnectionTool(inputStream);
-		List<Object[]> dataSet=connectionTool.excutionSql();
-		ExportExcle exportExcle=new ExportExcle();
-		OutputStream out=new FileOutputStream(new File("D:xxxxx.xls"));
-		exportExcle.export(dataSet,out);
-		
-	}
 }
