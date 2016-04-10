@@ -15,7 +15,7 @@ public class TestExport {
 		ConnectionTool connectionTool = new ConnectionTool(inputStream);
 		List<Object[]> dataSet = connectionTool.excutionSql();
 		ExportExcle exportExcle = new ExportExcle();
-		OutputStream out = new FileOutputStream(new File("D:xxxxx.xls"));
+		OutputStream out = new FileOutputStream(new File("D:/test3.xlsx"));
 		exportExcle.export(dataSet, out);
 	}
 }

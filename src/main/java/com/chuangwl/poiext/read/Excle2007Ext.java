@@ -1,21 +1,16 @@
-package com.chuangwl.test;
+package com.chuangwl.poiext.read;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.chuangwl.xml.parsers.model.XmlModelParser;
 
@@ -31,7 +26,7 @@ public class Excle2007Ext {
 		Map<String, String> tableAttrs = modelParser.getTableAttrs();
 		Map<String, String> fieldAttrs = modelParser.getFieldAttrs();
 		String tableName = tableAttrs.get("name");
-		String fileName = "default.sql";
+		String fileName = "D:/default.sql";
 		//用来拼接 字段  列如:name1,name2,name3,name4,name5,name6,name7
 		//为下面 insert into 作准备
 		String clumns="";
@@ -58,13 +53,13 @@ public class Excle2007Ext {
 		stringBuilder.append("-- ---------------------------- \n");
 		System.out.println(stringBuilder.toString());
 		// 构造 XSSFWorkbook 对象，strPath 传入文件路径
-		XSSFWorkbook xwb = new XSSFWorkbook(new FileInputStream(excleFile));
+		HSSFWorkbook xwb = new HSSFWorkbook(new FileInputStream(excleFile));
 		// 读取第一章表格内容
-		XSSFSheet sheet = xwb.getSheetAt(0);
+		HSSFSheet sheet = xwb.getSheetAt(0);
 		// 用来装一行的内容
 		Object value = null;
-		XSSFRow row = null;
-		XSSFCell cell = null;
+		HSSFRow row = null;
+		HSSFCell cell = null;
 		int counter = 0;
 		// 获取 一共有多少行
 		int rows = sheet.getPhysicalNumberOfRows();
@@ -93,20 +88,20 @@ public class Excle2007Ext {
 				if(null==cell) continue;
 				// 判断列的内容类型
 				switch (cell.getCellType()) {
-				case XSSFCell.CELL_TYPE_STRING:
+				case HSSFCell.CELL_TYPE_STRING:
 					value = cell.getStringCellValue();
 					System.out.print(value+"  ");
 					break;
-				case XSSFCell.CELL_TYPE_NUMERIC:
-					value = cell.getRawValue();
+				case HSSFCell.CELL_TYPE_NUMERIC:
+					value = cell.getStringCellValue();
 					System.out.print(value+"  ");
 					break;
-				case XSSFCell.CELL_TYPE_BOOLEAN:
+				case HSSFCell.CELL_TYPE_BOOLEAN:
 					value = cell.getBooleanCellValue();
 					System.out.print(value+"  ");
 					break;
 				// 这一列为空
-				case XSSFCell.CELL_TYPE_BLANK:
+				case HSSFCell.CELL_TYPE_BLANK:
 					value = "";
 					System.out.print(value+"  ");
 					break;
@@ -164,24 +159,20 @@ public class Excle2007Ext {
 		
 		
 	}
-	public void writeDisk(StringBuilder stringBuilder,String fileName){
-		String path="/home/reet/"+fileName;
+	public void writeDisk(StringBuilder stringBuilder,String fileAbsolutePath){
 		try {
-			FileOutputStream out =new FileOutputStream(new File(path));
+			FileOutputStream out =new FileOutputStream(new File(fileAbsolutePath));
 			out.write(stringBuilder.toString().getBytes());
 			out.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 
 	public static void main(String[] args) throws Exception {
-		new Excle2007Ext(new XmlModelParser(new File("src/main/resources/generate-sql.xml")).generteModel())
-				.GenerateSqlFile(new File("/home/reet/Desktop/library.xlsx"));
-		;
-
+		new Excle2007Ext(new XmlModelParser(new File("src/main/resources/generate-sql.xml")).generteModel()
+				).GenerateSqlFile(new File("D:/test3.xlsx"));
 	}
 
 }
