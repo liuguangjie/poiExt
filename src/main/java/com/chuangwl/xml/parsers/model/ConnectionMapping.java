@@ -14,7 +14,8 @@ public class ConnectionMapping implements Serializable {
 	private String database;
 	
 	private String sql;
-
+	private String exportPath;
+	
 	public String getType() {
 		return type;
 	}
@@ -73,12 +74,20 @@ public class ConnectionMapping implements Serializable {
 		this.database = database;
 	}
 
+	public String getExportPath() {
+		return exportPath;
+	}
+
+	public void setExportPath(String exportPath) {
+		this.exportPath = exportPath;
+	}
+
 	@Override
 	public String toString() {
 		return "ConnectionMapping [type=" + type + ", host=" + host + ", port=" + port + ", user=" + user + ", passwd="
-				+ passwd + ", database=" + database + ", sql=" + sql + "]";
+				+ passwd + ", database=" + database + ", sql=" + sql + ", exportPath=" + exportPath + "]";
 	}
-	
+
 	
 	
 }

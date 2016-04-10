@@ -13,7 +13,7 @@
 		<column name="name2" />
 	</table>
 
-	<!-- sql 语句 转换 excle -->
+	<!-- sql 语句 转换 excle 固定写法  -->
 	<sql-convert-excle>
 		<connections>
 			<!-- type 的值是数据库类型 -->
@@ -23,7 +23,9 @@
 				<passwd>root</passwd>
 			</connection>
 		</connections>
+		<!-- 导出的路径和[文件名] -->
 		<export-path>D:/</export-path>
+		
 		<sql>
 			select * from items
 		</sql>

@@ -21,7 +21,7 @@ public class ExportExcle {
 	public void export(String[] headers){
 		//1.声明一个工作薄
 		HSSFWorkbook hssfWorkbook=new HSSFWorkbook();
-		//2.生成一个表格
+		//2.生成一个表格  // 在Excel工作簿中建一工作表，其名为test
 		String sheetname="test";
 		HSSFSheet hssfSheet=hssfWorkbook.createSheet(sheetname);
 		
@@ -76,6 +76,8 @@ public class ExportExcle {
 		}
 		
 		// 遍历集合数据，产生数据行
+		
+		
 		
 		
 		

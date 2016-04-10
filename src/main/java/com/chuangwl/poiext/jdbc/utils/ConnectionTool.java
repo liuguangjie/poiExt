@@ -63,6 +63,7 @@ public class ConnectionTool {
 	}
 	public void setConnectionMapping(){
 		Map<String, String> info=connectionParser.generateConnectionMapping();
+		System.out.println(info);
 		Field fields[]=connectionMapping.getClass().getDeclaredFields();
 		for ( Field field:fields){
 			if(!Modifier.isFinal(field.getModifiers())){
@@ -104,9 +105,11 @@ public class ConnectionTool {
 	
 	public static void main(String[] args) {
 		
-		ConnectionTool connectionTool=new ConnectionTool(ConnectionTool.class.getClassLoader().getResourceAsStream("sql-convert-excle.xml"));
-//		ConnectionTool connectionTool=new ConnectionTool(new File("sql-convert-excle.xml"));
+		InputStream inputStream=ConnectionTool.class.getClassLoader().getResourceAsStream("sql-convert-excle.xml");
+		System.out.println(inputStream);
+		ConnectionTool connectionTool=new ConnectionTool(inputStream);
 		System.out.println(connectionTool.getConnection());
-	
+		
+		
 	}
 }
