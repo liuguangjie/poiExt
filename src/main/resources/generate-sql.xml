@@ -12,7 +12,10 @@
  -->
 <tables>
 	<table name="table" charset="UTF-8">
-		<!-- <column type="varchar" length="" name=""></column> -->
+		<!--
+		 你要转换sql语句要与excle列一一对应
+		 方便生成sql语句
+		 -->
 		<column  name="name1"/>
 		<column  name="name2"/>
 		<column  name="name3"/>

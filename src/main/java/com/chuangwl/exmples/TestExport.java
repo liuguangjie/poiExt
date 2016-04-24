@@ -1,4 +1,4 @@
-package com.chuangwl.xml.exmples;
+package com.chuangwl.exmples;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -14,8 +14,8 @@ public class TestExport {
 		InputStream inputStream = ConnectionTool.class.getClassLoader().getResourceAsStream("sql-convert-excle.xml");
 		ConnectionTool connectionTool = new ConnectionTool(inputStream);
 		List<Object[]> dataSet = connectionTool.excutionSql();
-		ExportExcle exportExcle = new ExportExcle();
+        ExportExcle exportExcle = new ExportExcle();
 		OutputStream out = new FileOutputStream(new File("D:/test3.xlsx"));
-		exportExcle.export(dataSet, out);
+		exportExcle.export2003Excle(dataSet, out);
 	}
 }

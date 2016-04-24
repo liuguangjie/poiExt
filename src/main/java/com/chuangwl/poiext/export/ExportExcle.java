@@ -21,7 +21,65 @@ public class ExportExcle {
 
 	public ExportExcle() {
 	}
+	public void export2003Excle(List<Object[]> dataSet, OutputStream out){
+		//创建一个2003工作薄
+        HSSFWorkbook hwb = new HSSFWorkbook();
+        // 生成一个表格
+        String title="default";
+        HSSFSheet sheet=hwb.createSheet(title);
+        // 设置表格默认列宽度
+        // 设置样式
+        // 设置一个字体
 
+        // 产生表格标题行
+        HSSFRow row = sheet.createRow(0);
+        Iterator<Object[]> it = dataSet.iterator();
+        Object[] headers = it.next();
+        int length=headers.length;
+        for (short i = 0; i < length; i++) {
+            HSSFCell cell = row.createCell(i);
+            HSSFRichTextString text = new HSSFRichTextString(headers[i].toString());
+            cell.setCellValue(text);
+        }
+
+        // 遍历集合数据，产生数据行
+        int index = 0;
+        HSSFCell cell = null;
+        Object value;
+        while (it.hasNext()) {
+            index++;
+            row = sheet.createRow(index);
+            headers = it.next();
+            for (int i = 0; i < length; i++) {
+                cell = row.createCell(i);
+                value = headers[i];
+                if (null != value) {
+                    HSSFRichTextString richString = new HSSFRichTextString(value.toString());
+                    cell.setCellValue(richString);
+                } else {
+                    cell.setCellValue("");
+                }
+            }
+        }
+        try {
+            hwb.write(out);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
+	public void export2007Excle(){
+
+	}
+
+	public boolean excle2007or2003(){
+
+		return true;
+	}
+
+
+
+
+    @Deprecated
 	public void export(List<Object[]> dataSet, OutputStream out) {
 		// 1.声明一个工作薄
 		HSSFWorkbook hssfWorkbook = new HSSFWorkbook();

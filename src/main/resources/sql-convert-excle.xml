@@ -23,9 +23,10 @@
 				<passwd>root</passwd>
 			</connection>
 		</connections>
-		<!-- 导出的路径和[文件名] -->
+		<!-- 这个暂时还没有做
+		    导出的路径和[文件名]
+		-->
 		<export-path>D:/</export-path>
-		
 		<sql>
 			select * from items
 		</sql>
