@@ -10,14 +10,13 @@ import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.xssf.usermodel.XSSFCell;
 
 import com.chuangwl.xml.parsers.model.XmlModelParser;
 
-public class Excle2007Ext {
+public class ReadExcleToSql {
 	private XmlModelParser modelParser = null;
 
-	public Excle2007Ext(XmlModelParser modelParser) {
+	public ReadExcleToSql(XmlModelParser modelParser) {
 		this.modelParser = modelParser;
 	}
 
@@ -44,7 +43,6 @@ public class Excle2007Ext {
 			}else{
 				clumns=clumns+key+",";
 			}
-			
 		}
 //		System.out.println(clumns);
 		stringBuilder.append(" ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=DYNAMIC; \n");
@@ -80,12 +78,12 @@ public class Excle2007Ext {
 			//这里的值用 我们在map中的key个数而key值正好是数据库的字段名称
 			j=0;
 			//拼接sql语句
-			stringBuilder.append("INSERT INTO "+tableName+" ("+clumns+") ");
+			stringBuilder.append("INSERT INTO "+tableName+" ("+clumns+")  \n");
 			stringBuilder.append("values (");
 			for(String key : keySet){
 				cell = row.getCell(j);
-				j++;
-				if(null==cell) continue;
+                value=cell;
+				/*if(null==cell) continue;
 				// 判断列的内容类型
 				switch (cell.getCellType()) {
 				case HSSFCell.CELL_TYPE_STRING:
@@ -108,16 +106,15 @@ public class Excle2007Ext {
 				default:
 					value = cell.toString();
 					System.out.print(value+"  ");
-				}
-				
-				if(j>=keyCount){
+				}*/
+                if (value == null ) {
+                    value="";
+                }
+                j++;
+				if(j==keyCount){
 					stringBuilder.append("'"+value+"'");
 				}else{
 					stringBuilder.append("'"+value+"',");
-				}
-				
-				if (value == null || "".equals(value)) {
-					continue;
 				}
 			}
 			stringBuilder.append(" ); \n");
@@ -171,7 +168,7 @@ public class Excle2007Ext {
 	
 
 	public static void main(String[] args) throws Exception {
-		new Excle2007Ext(new XmlModelParser(new File("src/main/resources/generate-sql.xml")).generteModel()
+		new ReadExcleToSql(new XmlModelParser(new File("src/main/resources/generate-sql.xml")).generteModel()
 				).GenerateSqlFile(new File("D:/test3.xlsx"));
 	}
 

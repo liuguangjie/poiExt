@@ -23,5 +23,13 @@
 		<column  name="name5"/>
 		<column  name="name6"/>
 		<column  name="name7"/>
+		<column  name="name8"/>
+		<column  name="name9"/>
+		<column  name="name10"/>
+		<column  name="name11"/>
+		<column  name="name12"/>
+		<column  name="name13"/>
+		<column  name="name14"/>
+		<column  name="name15"/>
 	</table>
 </tables>
