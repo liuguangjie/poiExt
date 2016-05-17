@@ -46,14 +46,21 @@ public class XmlModelParser {
 			Node tableNode = nodeLists.item(0);
 			tableAttrs = new LinkedHashMap<String, String>(1);
 			NamedNodeMap namedNodeMap = tableNode.getAttributes();
-			int attrCount = namedNodeMap.getLength();
+
 			if (tableNode.hasAttributes() && namedNodeMap != null) {
+				int attrCount = namedNodeMap.getLength();
+				Node attrNode=null;
 				for (int i = 0; i < attrCount; i++) {
-					Node attrNode = namedNodeMap.item(i);
+					attrNode = namedNodeMap.item(i);
 					tableAttrs.put(attrNode.getNodeName(), attrNode.getNodeValue());
 				}
 			}
 			
+			/**
+			 * zhe li shi you wen ti  de
+			 * xu yao  xiou gai
+			 */
+
 			Document childDocument=tableNode.getOwnerDocument();
 			NodeList childNodeList=childDocument.getElementsByTagName("column");
 			int childLength=childNodeList.getLength();
