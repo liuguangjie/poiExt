@@ -20,7 +20,7 @@
 			<connection type="mysql" host="localhost" port="3306">
 				<database>mybatis</database>
 				<user>root</user>
-				<passwd>root</passwd>
+				<passwd>123456</passwd>
 			</connection>
 		</connections>
 		<!-- 这个暂时还没有做

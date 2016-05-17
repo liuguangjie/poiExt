@@ -25,7 +25,7 @@ public class ReadExcleToSql {
 		Map<String, String> tableAttrs = modelParser.getTableAttrs();
 		Map<String, String> fieldAttrs = modelParser.getFieldAttrs();
 		String tableName = tableAttrs.get("name");
-		String fileName = "D:/default.sql";
+		String fileName = "/home/free/tmp/default.sql";
 		//用来拼接 字段  列如:name1,name2,name3,name4,name5,name6,name7
 		//为下面 insert into 作准备
 		String clumns="";
@@ -169,7 +169,7 @@ public class ReadExcleToSql {
 
 	public static void main(String[] args) throws Exception {
 		new ReadExcleToSql(new XmlModelParser(new File("src/main/resources/generate-sql.xml")).generteModel()
-				).GenerateSqlFile(new File("D:/test3.xlsx"));
+				).GenerateSqlFile(new File("/home/free/tmp/excle_test/test3.xlsx"));
 	}
 
 }

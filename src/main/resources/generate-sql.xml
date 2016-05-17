@@ -16,20 +16,11 @@
 		 你要转换sql语句要与excle列一一对应
 		 方便生成sql语句
 		 -->
-		<column  name="name1"/>
-		<column  name="name2"/>
-		<column  name="name3"/>
-		<column  name="name4"/>
-		<column  name="name5"/>
-		<column  name="name6"/>
-		<column  name="name7"/>
-		<column  name="name8"/>
-		<column  name="name9"/>
-		<column  name="name10"/>
-		<column  name="name11"/>
-		<column  name="name12"/>
-		<column  name="name13"/>
-		<column  name="name14"/>
-		<column  name="name15"/>
+		<column  name="id" type="int"/>
+		<column  name="name" type="string"/>
+		<column  name="price" type="double"/>
+		<column  name="detail" type="string"/>
+		<column  name="pic" type="string"/>
+		<column  name="createtime" type="date"/>
 	</table>
 </tables>
